@@ -64,7 +64,7 @@ export type StoredGameStateResult =
     }
 
 const MAX_ACTIVE_CHALLENGERS = 3
-const CHALLENGER_MAX_HEALTH = 3
+const CHALLENGER_MAX_HEALTH = 1
 const FIRE_MASTER_HEALTH_BONUS = 10
 const FIRE_MASTER_RECOVERY = 2
 
@@ -178,7 +178,12 @@ export function resolveTurn(
   const activeChallengers = getActiveChallengers(gameState)
   const fireMasterAction = getCurrentFireMasterAction(gameState)
   const currentPattern = getCurrentPattern(gameState)
-  const playerDamage = calculatePlayerDamage(activeChallengers, selections)
+  const incomingPlayerDamage = calculatePlayerDamage(
+    activeChallengers,
+    selections,
+  )
+  const playerDamage =
+    fireMasterAction === 'Guard' ? 0 : incomingPlayerDamage
   const readCount = countReaders(activeChallengers, selections)
   const fireMasterHealthAfterPlayerDamage = Math.max(
     0,
@@ -371,16 +376,22 @@ function applyFireMasterAction(
   }
 
   if (fireMasterAction === 'Lightning') {
-    const target = activeChallengers.find(
-      (challenger) => selections[challenger.id] !== 'Guard',
-    )
+    const guardCount = activeChallengers.filter(
+      (challenger) => selections[challenger.id] === 'Guard',
+    ).length
 
-    if (!target) {
+    if (guardCount >= 2) {
       return challengers
     }
 
+    const damagedIds = new Set(
+      activeChallengers.map((challenger) => challenger.id),
+    )
+
     return challengers.map((challenger) =>
-      challenger.id === target.id ? damageChallenger(challenger, 3) : challenger,
+      damagedIds.has(challenger.id)
+        ? damageChallenger(challenger, 3)
+        : challenger,
     )
   }
 
