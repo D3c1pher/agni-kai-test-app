@@ -186,17 +186,16 @@ function App() {
   const isTurnReady = canResolveTurn(gameState, selectedActions)
 
   return (
-    <main className="min-h-screen bg-[#f6f7fb] px-4 py-6 text-slate-950 sm:px-6 lg:px-8">
-      <section className="mx-auto max-w-7xl">
-        <header className="flex flex-col gap-4 border-b border-slate-200 pb-5 md:flex-row md:items-end md:justify-between">
-          <div>
-            <p className="text-sm font-semibold uppercase tracking-wide text-red-700">
+    <main className="h-screen overflow-hidden bg-[#f6f7fb] px-4 py-4 text-slate-950 sm:px-6 lg:px-8">
+      <section className="mx-auto flex h-full max-w-7xl flex-col">
+        <header className="flex shrink-0 flex-col gap-3 border-b border-slate-200 pb-3 sm:flex-row sm:items-center sm:justify-between">
+          <h1 className="text-3xl font-bold tracking-normal text-slate-950">
+            Agni Kai
+          </h1>
+          <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
+            <div className="rounded-md border border-red-200 bg-red-50 px-4 py-2 text-sm font-bold text-red-800">
               Turn {gameState.turn}
-            </p>
-            <h1 className="mt-2 text-4xl font-bold tracking-normal">
-              Agni Kai
-            </h1>
-          </div>
+            </div>
           <button
             className="w-full rounded-md border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-red-300 hover:text-red-700 md:w-auto"
             type="button"
@@ -204,6 +203,7 @@ function App() {
           >
             Reset duel
           </button>
+          </div>
         </header>
 
         {gameState.status !== 'playing' ? (
@@ -227,20 +227,20 @@ function App() {
           </section>
         ) : null}
 
-        <section className="mt-6 grid gap-5 lg:grid-cols-[1.1fr_1.9fr]">
-          <div className="rounded-lg border border-red-200 bg-white p-5 shadow-sm">
+        <section className="mt-3 grid min-h-0 flex-[0_0_45%] gap-3 lg:grid-cols-[1fr_2fr]">
+          <div className="rounded-lg border border-red-200 bg-white p-4 shadow-sm">
             <div className="flex items-start justify-between gap-4">
               <div>
                 <p className="text-sm font-semibold uppercase tracking-wide text-red-700">
                   Fire Master
                 </p>
-                <h2 className="mt-2 text-2xl font-bold">AI opponent</h2>
+                <h2 className="mt-1 text-xl font-bold">AI opponent</h2>
               </div>
               <span className="rounded-full bg-red-100 px-3 py-1 text-sm font-semibold text-red-800">
                 Pattern hidden
               </span>
             </div>
-            <div className="mt-5">
+            <div className="mt-4">
               <HealthBar
                 currentHealth={gameState.fireMaster.health}
                 label="Fire Master health"
@@ -248,7 +248,7 @@ function App() {
                 tone="red"
               />
             </div>
-            <dl className="mt-5 grid grid-cols-2 gap-3 text-sm">
+            <dl className="mt-4 grid grid-cols-2 gap-3 text-sm">
               <Stat
                 label="Last action"
                 value={gameState.fireMaster.lastAction ?? 'None yet'}
@@ -260,13 +260,13 @@ function App() {
             </dl>
           </div>
 
-          <div className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
+          <div className="flex min-h-0 flex-col rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
             <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
               <div>
                 <p className="text-sm font-semibold uppercase tracking-wide text-slate-500">
                   Active challengers
                 </p>
-                <h2 className="mt-2 text-2xl font-bold">
+                <h2 className="mt-1 text-xl font-bold">
                   Choose each action
                 </h2>
               </div>
@@ -280,7 +280,7 @@ function App() {
               </button>
             </div>
 
-            <div className="mt-5 grid gap-4 xl:grid-cols-3">
+            <div className="mt-3 grid min-h-0 flex-1 gap-3 xl:grid-cols-3">
               {activeChallengers.map((challenger) => (
                 <ChallengerPanel
                   challenger={challenger}
@@ -299,21 +299,23 @@ function App() {
           </div>
         </section>
 
-        <section className="mt-5 grid gap-5 lg:grid-cols-3">
-          <div className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
+        <section className="mt-3 grid min-h-0 flex-1 gap-3 lg:grid-cols-3">
+          <div className="flex min-h-0 flex-col rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
             <h2 className="text-lg font-bold">Roster</h2>
-            <RosterGroup challengers={backupChallengers} label="Backup" />
-            <RosterGroup challengers={deadChallengers} label="Defeated" />
+            <div className="mt-1 min-h-0 flex-1 overflow-y-auto pr-1">
+              <RosterGroup challengers={backupChallengers} label="Backup" />
+              <RosterGroup challengers={deadChallengers} label="Defeated" />
+            </div>
           </div>
 
-          <div className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
+          <div className="flex min-h-0 flex-col rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
             <h2 className="text-lg font-bold">Read results</h2>
             {gameState.revealedMoves.length > 0 ? (
-              <ul className="mt-4 space-y-3">
-                {gameState.revealedMoves.map((move) => (
+              <ul className="mt-4 min-h-0 flex-1 space-y-3 overflow-y-auto overscroll-contain pr-1">
+                {gameState.revealedMoves.map((move, moveIndex) => (
                   <li
                     className="rounded-md bg-amber-50 px-4 py-3 text-sm text-amber-950"
-                    key={`${move.turn}-${move.patternName}-${move.action}`}
+                    key={`${move.turn}-${move.patternName}-${move.action}-${moveIndex}`}
                   >
                     Turn {move.turn}: {move.action} from {move.patternName}
                   </li>
@@ -327,9 +329,9 @@ function App() {
             )}
           </div>
 
-          <div className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
+          <div className="flex min-h-0 flex-col rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
             <h2 className="text-lg font-bold">Turn log</h2>
-            <ol className="mt-4 space-y-3">
+            <ol className="mt-4 min-h-0 flex-1 space-y-3 overflow-y-auto pr-1">
               {gameState.turnLog.map((entry) => (
                 <li
                   className="rounded-md bg-slate-100 px-4 py-3 text-sm leading-6 text-slate-700"
@@ -358,11 +360,11 @@ function ChallengerPanel(props: {
   const selectedAction = props.selectedActions[props.challenger.id] ?? ''
 
   return (
-    <article className="rounded-lg border border-slate-200 bg-slate-50 p-4">
-      <div className="flex items-start justify-between gap-3">
+    <article className="rounded-lg border border-slate-200 bg-slate-50 p-3">
+      <div className="flex items-start justify-between gap-2">
         <div>
-          <h3 className="text-lg font-bold">Challenger {props.challenger.id}</h3>
-          <p className="mt-1 text-sm text-slate-600">
+          <h3 className="text-base font-bold">Challenger {props.challenger.id}</h3>
+          <p className="mt-0.5 text-xs text-slate-600">
             {props.challenger.hasLightningCharge
               ? 'Lightning charged'
               : 'No charge ready'}
@@ -375,7 +377,7 @@ function ChallengerPanel(props: {
         ) : null}
       </div>
 
-      <div className="mt-4">
+      <div className="mt-3">
         <HealthBar
           currentHealth={props.challenger.health}
           label="Challenger health"
@@ -384,10 +386,10 @@ function ChallengerPanel(props: {
         />
       </div>
 
-      <label className="mt-4 block text-sm font-semibold text-slate-700">
+      <label className="mt-3 block text-sm font-semibold text-slate-700">
         Action
         <select
-          className="mt-2 w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm outline-none transition focus:border-red-500 focus:ring-2 focus:ring-red-100"
+          className="mt-2 w-full rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm outline-none transition focus:border-red-500 focus:ring-2 focus:ring-red-100"
           value={selectedAction}
           onChange={(event) =>
             props.onActionChange(

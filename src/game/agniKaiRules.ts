@@ -221,8 +221,11 @@ export function resolveTurn(
     fireMaster: advancedFireMaster,
     revealedMoves:
       readCount > 0
-        ? getFutureFireMasterMoves(advancedFireMaster, nextTurn, readCount)
-        : [],
+        ? [
+            ...getFutureFireMasterMoves(advancedFireMaster, nextTurn, readCount),
+            ...gameState.revealedMoves,
+          ]
+        : gameState.revealedMoves,
     turnLog: trimTurnLog([
       createTurnSummary({
         turn: gameState.turn,
