@@ -217,13 +217,6 @@ export function HowToPlayModal(props: HowToPlayModalProps) {
                 </li>
               </ul>
             </GuideSection>
-
-            <GuideSection title="Performance Goal">
-              <p>
-                For a stronger result, defeat the Fire Master with more
-                challengers still alive and in fewer turns.
-              </p>
-            </GuideSection>
           </div>
         </div>
       </div>
