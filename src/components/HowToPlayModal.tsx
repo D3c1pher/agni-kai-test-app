@@ -87,7 +87,7 @@ export function HowToPlayModal(props: HowToPlayModalProps) {
         <header className="flex shrink-0 items-start justify-between gap-4 border-b border-slate-200 px-6 py-5">
           <div>
             <p className="text-xs font-bold uppercase tracking-widest text-red-700">
-              Agni Kai Trial | Web Duel
+              Agni Kai Trial | Duel Prototype
             </p>
             <h2
               className="mt-2 text-3xl font-bold tracking-normal"

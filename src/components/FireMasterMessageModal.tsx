@@ -158,9 +158,47 @@ export function FireMasterMessageModal(props: FireMasterMessageModalProps) {
               <p className="leading-6 text-slate-700">
                 From Yours Truly,
                 <br />
-                <strong className="text-slate-950">Norven (Inspired Weaver) Caracas</strong>
+                <strong className="text-slate-950">
+                  Norven '<span className="text-[#199efc]">Inspired Weaver</span>'{' '}
+                  Caracas
+                </strong>
                 <br />
                 Your Fire Master
+              </p>
+            </div>
+
+            <div className="space-y-2">
+              <p>
+                If you want to follow my game development stuff, you can follow me here.
+                I'll be posting game development updates again soon.
+              </p>
+              <p className="flex flex-wrap gap-3 pt-1">
+                <a
+                  className="inline-flex items-center gap-2 rounded-md border border-[#1877f2]/30 px-3 py-2 font-semibold text-[#1877f2] transition hover:bg-[#1877f2]/10 focus:outline-none focus:ring-2 focus:ring-[#1877f2]/40"
+                  href="https://www.facebook.com/profile.php?id=61581950243209"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  <svg
+                    aria-hidden="true"
+                    className="h-5 w-5 fill-current"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5.02 3.66 9.18 8.44 9.94v-7.03H7.9v-2.91h2.54V9.85c0-2.52 1.49-3.91 3.77-3.91 1.09 0 2.23.2 2.23.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.9h2.77l-.44 2.91h-2.33V22C18.34 21.24 22 17.08 22 12.06Z" />
+                  </svg>
+                  Facebook
+                </a>
+                <a
+                  className="inline-flex items-center gap-2 rounded-md border border-black/30 px-3 py-2 font-semibold text-black transition hover:bg-black/10 focus:outline-none focus:ring-2 focus:ring-black/40"
+                  href="https://x.com/InspiredWeaver"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  <svg aria-hidden="true" className="h-5 w-5 fill-current" viewBox="0 0 24 24">
+                    <path d="M18.9 2H22l-6.77 7.74L23.2 22h-6.24l-4.89-6.39L6.48 22H3.36l7.26-8.3L2.97 2h6.4l4.42 5.84L18.9 2Zm-1.09 17.84h1.73L8.43 4.05H6.58l11.23 15.79Z" />
+                  </svg>
+                  Twitter
+                </a>
               </p>
             </div>
           </div>
