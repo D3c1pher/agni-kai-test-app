@@ -21,7 +21,7 @@ export function HealthBar(props: HealthBarProps) {
           {props.currentHealth} / {props.maxHealth}
         </span>
       </div>
-      <div className="mt-2 h-3 overflow-hidden border border-[var(--agni-border)] bg-[rgba(215,164,87,0.18)]">
+      <div className="mt-1.5 h-2.5 overflow-hidden border border-[var(--agni-border)] bg-[rgba(215,164,87,0.18)]">
         <div
           className={`h-full ${barColor}`}
           style={{ width: `${healthPercent}%` }}

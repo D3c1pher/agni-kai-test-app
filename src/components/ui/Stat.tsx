@@ -5,7 +5,7 @@ type StatProps = {
 
 export function Stat(props: StatProps) {
   return (
-    <div className="border border-[var(--agni-border)] bg-[rgba(255,244,209,0.08)] p-3">
+    <div className="border border-[var(--agni-border)] bg-[rgba(255,244,209,0.08)] p-2">
       <dt className="text-xs font-semibold uppercase tracking-wide text-[var(--agni-gold)]">
         {props.label}
       </dt>

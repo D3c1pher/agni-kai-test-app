@@ -87,7 +87,7 @@ export function HowToPlayModal(props: HowToPlayModalProps) {
         <header className="flex shrink-0 items-start justify-between gap-3 border-b-2 border-[var(--agni-rust-dark)] bg-[var(--agni-rust)] px-4 py-4 text-[var(--agni-cream)] sm:gap-4 sm:px-6 sm:py-5">
           <div>
             <p className="text-xs font-semibold uppercase tracking-widest text-[var(--agni-gold)]">
-              Agni Kai Trial | Duel Prototype
+              Agni Kai Trial | Prototype
             </p>
             <h2
               className="agni-display mt-2 text-2xl sm:text-3xl"
@@ -177,7 +177,7 @@ export function HowToPlayModal(props: HowToPlayModalProps) {
                 </ActionRule>
                 <ActionRule name="Read">
                   Reveal one upcoming Fire Master move. Multiple readers can
-                  reveal more moves, up to three revealed moves at a time.
+                  reveal more moves, up to 3 revealed moves at a time.
                 </ActionRule>
               </div>
             </GuideSection>

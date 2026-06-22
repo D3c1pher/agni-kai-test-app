@@ -40,7 +40,7 @@ export function StartScreen(props: StartScreenProps) {
           <div className="flex items-center gap-4">
             <FlameEmblem className="h-16 w-16 shrink-0 drop-shadow-[0_4px_0_#0f0704] sm:h-20 sm:w-20" />
             <div>
-              <p className="agni-kicker">Duel prototype</p>
+              <p className="agni-kicker">Game Prototype</p>
               <h1 className="agni-display mt-2 text-4xl text-[var(--agni-cream)] sm:text-6xl">
                 Agni Kai
               </h1>

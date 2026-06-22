@@ -25,15 +25,15 @@ export function FireMasterPanel(props: FireMasterPanelProps) {
 
   return (
     <div
-      className={`agni-panel-dark p-4 ${fireMasterFeedbackClass}`}
+      className={`agni-panel-dark agni-scrollbar overflow-y-auto p-3 xl:min-h-0 xl:overscroll-contain ${fireMasterFeedbackClass}`}
     >
       <div>
         <p className="agni-kicker">
           Fire Master
         </p>
-        <h2 className="agni-display mt-1 text-2xl">AI opponent</h2>
+        <h2 className="agni-display text-xl">AI opponent</h2>
       </div>
-      <div className="mt-4">
+      <div className="mt-3">
         <HealthBar
           currentHealth={props.gameState.fireMaster.health}
           label="Fire Master health"
@@ -41,7 +41,7 @@ export function FireMasterPanel(props: FireMasterPanelProps) {
           tone="red"
         />
       </div>
-      <dl className="mt-4 grid grid-cols-2 gap-3 text-sm">
+      <dl className="mt-3 grid grid-cols-2 gap-2 text-sm">
         <Stat
           label="Last action"
           value={props.gameState.fireMaster.lastAction ?? 'None yet'}
@@ -54,7 +54,7 @@ export function FireMasterPanel(props: FireMasterPanelProps) {
         />
       </dl>
       {revealedCurrentMove ? (
-        <div className="mt-3 border border-[var(--agni-gold)] bg-[var(--agni-parchment)] px-4 py-3 text-sm font-semibold text-[var(--agni-ink)]">
+        <div className="mt-2 border border-[var(--agni-gold)] bg-[var(--agni-parchment)] px-3 py-2 text-sm font-semibold text-[var(--agni-ink)]">
           Next move: {revealedCurrentMove.action}
         </div>
       ) : null}

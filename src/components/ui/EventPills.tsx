@@ -11,10 +11,10 @@ export function EventPills(props: EventPillsProps) {
   }
 
   return (
-    <div className="mt-3 flex flex-wrap gap-2">
+    <div className="mt-2 flex flex-wrap gap-1.5">
       {props.events.map((event, eventIndex) => (
         <span
-          className={`px-2.5 py-1 text-xs font-semibold uppercase tracking-wide shadow-[0_2px_0_rgba(15,7,4,0.3)] ${getEventPillClass(
+          className={`px-2 py-0.5 text-xs font-semibold uppercase tracking-wide shadow-[0_2px_0_rgba(15,7,4,0.3)] ${getEventPillClass(
             event,
           )}`}
           key={`${event.type}-${eventIndex}`}
