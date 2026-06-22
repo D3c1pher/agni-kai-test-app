@@ -1,8 +1,8 @@
 import {
-  calculatePlayerDamage,
   countReaders,
   getLegalChallengerActions,
   getRecoveryAmount,
+  resolvePlayerDamage,
 } from './challengerActions'
 import {
   applyFireMasterAction,
@@ -43,9 +43,7 @@ export function canResolveTurn(
       return false
     }
 
-    return getLegalChallengerActions(challenger, selections).includes(
-      selectedAction,
-    )
+    return getLegalChallengerActions(challenger).includes(selectedAction)
   })
 }
 
@@ -59,12 +57,12 @@ export function resolveTurn(
 
   const activeChallengers = getActiveChallengers(gameState)
   const fireMasterAction = getCurrentFireMasterAction(gameState)
-  const incomingPlayerDamage = calculatePlayerDamage(
+  const playerDamageResolution = resolvePlayerDamage(
     activeChallengers,
     selections,
+    fireMasterAction === 'Guard',
   )
-  const playerDamage =
-    fireMasterAction === 'Guard' ? 0 : incomingPlayerDamage
+  const playerDamage = playerDamageResolution.appliedDamage
   const readCount = countReaders(activeChallengers, selections)
   const recoveryAmount = getRecoveryAmount(
     gameState.fireMaster.health,
@@ -132,7 +130,7 @@ export function resolveTurn(
     activeChallengers,
     selections,
     fireMasterAction,
-    incomingPlayerDamage,
+    blockedChallengerId: playerDamageResolution.blockedChallengerId,
     playerDamage,
     recoveryAmount,
     readCount,

@@ -111,8 +111,16 @@ function applyLightningDamage(
   )
 
   return challengers.map((challenger) =>
-    damagedIds.has(challenger.id) ? damageChallenger(challenger, 3) : challenger,
+    damagedIds.has(challenger.id) ? defeatChallenger(challenger) : challenger,
   )
+}
+
+function defeatChallenger(challenger: Challenger): Challenger {
+  return {
+    ...challenger,
+    health: 0,
+    isActive: false,
+  }
 }
 
 function damageChallenger(challenger: Challenger, damage: number): Challenger {

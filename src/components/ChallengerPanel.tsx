@@ -18,10 +18,7 @@ type ChallengerPanelProps = {
 }
 
 export function ChallengerPanel(props: ChallengerPanelProps) {
-  const legalActions = getLegalChallengerActions(
-    props.challenger,
-    props.selectedActions,
-  )
+  const legalActions = getLegalChallengerActions(props.challenger)
   const selectedAction = props.selectedActions[props.challenger.id] ?? ''
   const challengerFeedbackClass = getChallengerFeedbackClass(
     props.challenger.id,

@@ -43,7 +43,6 @@ export function getChallengerFeedbackClass(
     events.some(
       (event) =>
         event.type === 'blocked' &&
-        event.target === 'challenger' &&
         event.challengerId === challengerId,
     )
   ) {

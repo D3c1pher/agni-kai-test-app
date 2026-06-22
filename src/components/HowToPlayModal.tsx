@@ -172,8 +172,8 @@ export function HowToPlayModal(props: HowToPlayModalProps) {
                 </ActionRule>
                 <ActionRule name="Lightning">
                   Deal 3 damage. The challenger must have Charged on the
-                  previous turn, and only one challenger may use Lightning per
-                  turn.
+                  previous turn. Any number of charged challengers may use
+                  Lightning on the same turn.
                 </ActionRule>
                 <ActionRule name="Read">
                   Reveal one upcoming Fire Master move. Multiple readers can
@@ -188,14 +188,15 @@ export function HowToPlayModal(props: HowToPlayModalProps) {
                   Deal 1 damage to every active challenger who did not Guard.
                 </ActionRule>
                 <ActionRule name="Guard">
-                  Block all damage from challenger attacks that turn.
+                  Block one attacking challenger. The highest-damage attack is
+                  blocked; ties are resolved randomly.
                 </ActionRule>
                 <ActionRule name="Charge">
                   Deal no damage and signal that Lightning may be coming later.
                 </ActionRule>
                 <ActionRule name="Lightning">
-                  Deal 3 damage to all active challengers unless at least two
-                  active challengers Guard.
+                  Defeat every active challenger unless at least two active
+                  challengers Guard.
                 </ActionRule>
                 <ActionRule name="Recover">
                   Restore up to 2 health without exceeding maximum health.
@@ -209,7 +210,8 @@ export function HowToPlayModal(props: HowToPlayModalProps) {
                   The same challenger cannot Guard on two consecutive turns.
                 </li>
                 <li>
-                  Fire Master Guard blocks both Strike and Lightning damage.
+                  Fire Master Guard can block either Strike or Lightning, but
+                  only from one challenger each turn.
                 </li>
                 <li>
                   If two or more challengers Guard against Fire Master

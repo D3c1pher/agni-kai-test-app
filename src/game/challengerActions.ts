@@ -8,7 +8,6 @@ import type {
 
 export function getLegalChallengerActions(
   challenger: Challenger,
-  selections: Partial<ChallengerActionSelections>,
 ): ChallengerAction[] {
   return PLAYER_ACTIONS.filter((action) => {
     if (action === 'Guard') {
@@ -16,30 +15,56 @@ export function getLegalChallengerActions(
     }
 
     if (action === 'Lightning') {
-      return canSelectLightning(challenger, selections)
+      return challenger.hasLightningCharge
     }
 
     return true
   })
 }
 
-export function calculatePlayerDamage(
+export type PlayerDamageResolution = {
+  incomingDamage: number
+  appliedDamage: number
+  blockedChallengerId: number | null
+}
+
+export function resolvePlayerDamage(
   activeChallengers: Challenger[],
   selections: ChallengerActionSelections,
-): number {
-  return activeChallengers.reduce((damage, challenger) => {
-    const selectedAction = selections[challenger.id]
+  isFireMasterGuarding: boolean,
+  random: () => number = Math.random,
+): PlayerDamageResolution {
+  const challengerDamage = activeChallengers.map((challenger) => ({
+    challengerId: challenger.id,
+    damage: getChallengerDamage(selections[challenger.id]),
+  }))
+  const incomingDamage = challengerDamage.reduce(
+    (totalDamage, attack) => totalDamage + attack.damage,
+    0,
+  )
 
-    if (selectedAction === 'Strike') {
-      return damage + 1
+  if (!isFireMasterGuarding || incomingDamage === 0) {
+    return {
+      incomingDamage,
+      appliedDamage: incomingDamage,
+      blockedChallengerId: null,
     }
+  }
 
-    if (selectedAction === 'Lightning') {
-      return damage + 3
-    }
+  const highestDamage = Math.max(
+    ...challengerDamage.map((attack) => attack.damage),
+  )
+  const highestDamageAttackers = challengerDamage.filter(
+    (attack) => attack.damage === highestDamage,
+  )
+  const blockedAttackIndex = Math.floor(random() * highestDamageAttackers.length)
+  const blockedAttack = highestDamageAttackers[blockedAttackIndex]
 
-    return damage
-  }, 0)
+  return {
+    incomingDamage,
+    appliedDamage: incomingDamage - blockedAttack.damage,
+    blockedChallengerId: blockedAttack.challengerId,
+  }
 }
 
 export function countReaders(
@@ -76,15 +101,14 @@ export function getRecoveryAmount(
   )
 }
 
-function canSelectLightning(
-  challenger: Challenger,
-  selections: Partial<ChallengerActionSelections>,
-): boolean {
-  if (!challenger.hasLightningCharge) {
-    return false
+function getChallengerDamage(action: ChallengerAction): number {
+  if (action === 'Lightning') {
+    return 3
   }
 
-  return Object.entries(selections).every(([challengerId, action]) => {
-    return action !== 'Lightning' || Number(challengerId) === challenger.id
-  })
+  if (action === 'Strike') {
+    return 1
+  }
+
+  return 0
 }

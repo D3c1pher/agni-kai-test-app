@@ -59,6 +59,7 @@ export type TurnEvent =
   | {
       type: 'blocked'
       target: 'fireMaster'
+      challengerId?: number
     }
   | {
       type: 'blocked'

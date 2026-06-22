@@ -163,7 +163,9 @@ function isDamageEvent(value: Record<string, unknown>): boolean {
 
 function isBlockedEvent(value: Record<string, unknown>): boolean {
   return (
-    value.target === 'fireMaster' ||
+    (value.target === 'fireMaster' &&
+      (value.challengerId === undefined ||
+        typeof value.challengerId === 'number')) ||
     (value.target === 'challenger' && typeof value.challengerId === 'number')
   )
 }

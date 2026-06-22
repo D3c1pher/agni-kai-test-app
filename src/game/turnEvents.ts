@@ -9,7 +9,7 @@ type TurnEventDetails = {
   activeChallengers: Challenger[]
   selections: ChallengerActionSelections
   fireMasterAction: FireMasterAction
-  incomingPlayerDamage: number
+  blockedChallengerId: number | null
   playerDamage: number
   recoveryAmount: number
   readCount: number
@@ -24,8 +24,14 @@ export function createTurnEvents(details: TurnEventDetails): TurnEvent[] {
     details.selections,
   )
   const fireMasterBlockEvents =
-    details.fireMasterAction === 'Guard' && details.incomingPlayerDamage > 0
-      ? [{ type: 'blocked', target: 'fireMaster' } satisfies TurnEvent]
+    details.blockedChallengerId !== null
+      ? [
+          {
+            type: 'blocked',
+            target: 'fireMaster',
+            challengerId: details.blockedChallengerId,
+          } satisfies TurnEvent,
+        ]
       : []
   const fireMasterDamageEvents =
     details.playerDamage > 0

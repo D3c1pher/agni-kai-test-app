@@ -147,27 +147,10 @@ export function useAgniKaiGame(): AgniKaiGameViewModel {
     challengerId: number,
     selectedAction: ChallengerAction,
   ) => {
-    setSelectedActions((currentActions) => {
-      if (selectedAction !== 'Lightning') {
-        return {
-          ...currentActions,
-          [challengerId]: selectedAction,
-        }
-      }
-
-      const nextActions: Partial<ChallengerActionSelections> = {}
-
-      Object.entries(currentActions).forEach(([currentChallengerId, action]) => {
-        if (action !== 'Lightning') {
-          nextActions[Number(currentChallengerId)] = action
-        }
-      })
-
-      return {
-        ...nextActions,
-        [challengerId]: selectedAction,
-      }
-    })
+    setSelectedActions((currentActions) => ({
+      ...currentActions,
+      [challengerId]: selectedAction,
+    }))
   }
 
   const confirmTurn = () => {

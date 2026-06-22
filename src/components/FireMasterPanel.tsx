@@ -27,16 +27,11 @@ export function FireMasterPanel(props: FireMasterPanelProps) {
     <div
       className={`rounded-lg border border-red-200 bg-white p-4 shadow-sm ${fireMasterFeedbackClass}`}
     >
-      <div className="flex items-start justify-between gap-4">
-        <div>
-          <p className="text-sm font-semibold uppercase tracking-wide text-red-700">
-            Fire Master
-          </p>
-          <h2 className="mt-1 text-xl font-bold">AI opponent</h2>
-        </div>
-        <span className="rounded-full bg-red-100 px-3 py-1 text-sm font-semibold text-red-800">
-          Pattern hidden
-        </span>
+      <div>
+        <p className="text-sm font-semibold uppercase tracking-wide text-red-700">
+          Fire Master
+        </p>
+        <h2 className="mt-1 text-xl font-bold">AI opponent</h2>
       </div>
       <div className="mt-4">
         <HealthBar
