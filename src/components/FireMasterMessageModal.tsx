@@ -119,7 +119,7 @@ export function FireMasterMessageModal(props: FireMasterMessageModalProps) {
               To the <strong className="text-[var(--agni-ink)]">Thrive As One Campers</strong>{' '}
               who experienced the{' '}
               <strong className="text-[var(--agni-rust)]">Agni Kai Trial</strong> during the{' '}
-              <strong className="text-[var(--agni-ink)]">Trials of the Elements</strong>{' '}
+              <strong className="text-[var(--agni-ink)]">Trial of the Elements</strong>{' '}
               activity:
             </p>
 
