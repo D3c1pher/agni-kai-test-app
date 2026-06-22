@@ -36,10 +36,10 @@ export function StartScreen(props: StartScreenProps) {
 
   return (
     <main className="agni-page min-h-dvh px-4 py-6 sm:px-5 sm:py-8">
-      <section className="mx-auto flex min-h-[calc(100dvh-3rem)] max-w-6xl flex-col justify-center sm:min-h-[calc(100dvh-4rem)]">
-        <div className="grid items-start gap-7 lg:grid-cols-[minmax(0,3fr)_minmax(18rem,2fr)] lg:gap-10">
+      <section className="mx-auto flex min-h-[calc(100dvh-3rem)] max-w-7xl flex-col justify-center sm:min-h-[calc(100dvh-4rem)]">
+        <div className="grid items-start gap-7 lg:grid-cols-[minmax(0,2fr)_minmax(24rem,3fr)] lg:gap-8 xl:gap-10">
           <div>
-            <div className="max-w-2xl">
+            <div>
           <div className="flex items-center gap-4">
             <FlameEmblem className="h-16 w-16 shrink-0 drop-shadow-[0_4px_0_#0f0704] sm:h-20 sm:w-20" />
             <div>
@@ -54,7 +54,7 @@ export function StartScreen(props: StartScreenProps) {
           </p>
             </div>
 
-            <div className="agni-panel mt-7 max-w-xl p-4 sm:mt-10 sm:p-6">
+            <div className="agni-panel mt-7 p-4 sm:mt-10 sm:p-6">
           <div className="grid gap-5 sm:grid-cols-2">
             <label
               className="block text-sm font-semibold uppercase tracking-wide text-[var(--agni-ink)]"
@@ -167,7 +167,7 @@ export function StartScreen(props: StartScreenProps) {
           </div>
 
           <aside
-            className="agni-panel p-5 sm:p-6 lg:flex lg:self-stretch lg:flex-col"
+            className="agni-panel p-4 sm:p-5 lg:flex lg:self-stretch lg:flex-col"
             aria-labelledby="developer-update-title"
           >
             <p className="agni-kicker">From the Developer</p>
@@ -180,10 +180,10 @@ export function StartScreen(props: StartScreenProps) {
             <div className="mt-5 max-h-80 overflow-y-auto pr-2 lg:min-h-0 lg:flex-1 lg:max-h-none">
               <img
                 alt="Youth Ministry Thrive As One"
-                className="aspect-video w-full border-2 border-[var(--agni-border)] object-cover"
+                className="mx-auto aspect-video w-full max-w-sm border-2 border-[var(--agni-border)] object-cover"
                 src={thriveAsOneYouthMinistryImage}
               />
-              <p className="mt-5 text-base leading-7 text-[var(--agni-ink)]">
+              <p className="mt-5 text-sm leading-7 text-[var(--agni-ink)] sm:text-base sm:leading-6">
               This game is dedicated to all the <strong>Campers</strong> who joined and participated in the <strong>Thrive As One Youth Ministry Camp</strong>.
 
               <br /><br />
